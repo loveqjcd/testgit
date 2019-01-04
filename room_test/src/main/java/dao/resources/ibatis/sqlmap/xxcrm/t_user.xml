@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="t_user">
+    <typeAlias alias="User" type="main.java.dao.model.user.UserDo" />
+    <resultMap id="UserResult" class="User">
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="password_real" property="passwordReal" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="tel" property="tel" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="real_name" property="realName" jdbcType="VARCHAR" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+        <result column="roleId" property="roleId" jdbcType="BIGINT" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+        <result column="update_user_id" property="updateUserId" jdbcType="BIGINT" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+        <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <delete id="delete" parameterClass="long">
+        delete from t_user where id = #id:LONG#
+    </delete>
+
+    <update id="updateUserById" parameterClass="User">
+        update t_user set gmt_modify = now()
+        <isNotNull prepend="," property="username">
+            username = #username:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="password">
+            password = #password:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="passwordReal">
+            password_real = #passwordReal:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="type">
+            type = #type:INTEGER#
+        </isNotNull>
+        <isNotNull prepend="," property="mobile">
+            mobile = #mobile:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="tel">
+            tel = #tel:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="email">
+            email = #email:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="realName">
+            real_name = #realName:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="memo">
+            memo = #memo:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="roleId">
+            roleId = #roleId:BIGINT#
+        </isNotNull>
+        <isNotNull prepend="," property="status">
+            status = #status:INTEGER#
+        </isNotNull>
+        <isNotNull prepend="," property="createUserId">
+            create_user_id = #createUserId:BIGINT#
+        </isNotNull>
+        <isNotNull prepend="," property="updateUserId">
+            update_user_id = #updateUserId:BIGINT#
+        </isNotNull>
+        where id = #id:BIGINT#
+    </update>
+    
+    <select id="queryUserList" resultMap="UserResult" parameterClass="User">
+    	select * from t_user
+    	<dynamic prepend=" where ">
+    		<isNotEmpty prepend=" and " property="status"> status = #status:INTEGER# </isNotEmpty>
+    		<isNotEmpty prepend=" and " property="type"> type = #type:INTEGER# </isNotEmpty>
+    		<isNotEmpty prepend=" and " property="username"> username = #username:VARCHAR# </isNotEmpty>
+    		<isNotEmpty prepend=" and " property="password"> password = #password:VARCHAR# </isNotEmpty>
+    	</dynamic>
+    </select>
+    
+    <select id="listUserByPage_count" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    	select count(*) from t_user
+    	where 1 = 1
+    	<dynamic prepend="">
+    		<isNotEmpty prepend=" and " property="id">id = #id:LONG#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="status">status = #status:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="type">type = #type:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="types">type in ($types$)</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="username">username like concat('%','$username$','%')</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="mobile">mobile like concat('%','$mobile$','%')</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="createUserId">create_user_id = #createUserId:LONG#</isNotEmpty>
+    	</dynamic>
+    </select>
+    
+    <select id="listUserByPage" parameterClass="java.util.HashMap" resultMap="UserResult">
+    	select * from t_user
+    	where 1 = 1
+    	<dynamic prepend="">
+    		<isNotEmpty prepend=" and " property="id">id = #id:LONG#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="status">status = #status:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="type">type = #type:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="types">type in ($types$)</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="username">username like concat('%','$username$','%')</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="mobile">mobile like concat('%','$mobile$','%')</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="createUserId">create_user_id = #createUserId:LONG#</isNotEmpty>
+    	</dynamic>
+    	order by type, status
+    	limit #startIndex:INTEGER#, #pageSize:INTEGER#
+    </select>
+    
+	<insert id="createUser" parameterClass="User">
+        insert into t_user (id, username, password, password_real, type, mobile, tel, email, real_name, memo, roleId, status, create_user_id, update_user_id, gmt_create, gmt_modify) 
+        values (#id:BIGINT#, #username:VARCHAR#, #password:VARCHAR#, #passwordReal:VARCHAR#, #type:INTEGER#, #mobile:VARCHAR#, #tel:VARCHAR#, #email:VARCHAR#, #realName:VARCHAR#, #memo:VARCHAR#, #roleId:BIGINT#, #status:INTEGER#, #createUserId:BIGINT#, #updateUserId:BIGINT#, now(), #gmtModify:TIMESTAMP#)
+        <selectKey keyProperty="id" type="post" resultClass="long">
+            select LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+	<select id="loadUserById" resultMap="UserResult" parameterClass="long">
+		select * from t_user where id = #userId:LONG#
+	</select>
+	
+	<select id="listUserByTypes" parameterClass="java.util.HashMap" resultMap="UserResult">
+		select * from t_user
+		where 1 = 1
+		<dynamic prepend="">
+			<isNotEmpty prepend=" and " property="types">type in ($types$)</isNotEmpty>
+		</dynamic>
+	</select>
+	
+</sqlMap>

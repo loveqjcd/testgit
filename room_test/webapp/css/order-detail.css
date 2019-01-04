@@ -1,0 +1,124 @@
+.IndentForm {
+	width: 100%;
+	float: left;
+	margin-bottom: 2em;
+}
+
+.IndevH {
+	padding: 0.5em 0;
+}
+
+.padding {
+	padding: 0.5em 0;
+}
+
+.border {
+	border-bottom: #ccc solid 1px;
+}
+
+.IndevH font {
+	font-size: 1.2em;
+	font-weight: 600;
+	margin-left: 1em;
+}
+
+.IndevWord {
+	padding: 1em 0 0.5em 0;
+}
+
+.IndevWord span {
+	margin-right: 1.5em;
+}
+
+.IndevWord span label {
+	display: inline-block;
+	cursor: auto;
+	color: #FE351B;
+	font-weight: 600;
+}
+
+.IndevX {
+	padding: 0.5em 0;
+	background: #EEE;
+}
+
+.IndevX font {
+	font-size: 1.2em;
+	margin-left: 1em;
+}
+
+.myIndev {
+	font-size: 1.2em;
+}
+
+.mytable tr td {
+	padding: 0.8em 0;
+}
+
+.mykinds {
+	float: left;
+	width: 100%;
+}
+
+.mykinds img {
+	width: 50px;
+	height: 50px;
+	vertical-align: middle;
+	float: left;
+	margin: 1em 0;
+}
+
+.kindsDeta {
+	display: inline-block;
+	margin: 0 1em;
+	max-width: 300px;
+	margin-top: 15px;
+}
+
+.mykinds span {
+	margin-left: 3em;
+}
+
+.mykinds span strong {
+	font-size: 1.2em;
+}
+
+.myDelivery {
+	float: left;
+	width: 100%;
+}
+
+.myDelivery span label {
+	display: inline-block;
+	color: #FE351B;
+	font-weight: 600;
+	font-size: 1.3em;
+}
+
+.myDelivery span strong {
+	font-size: 1.3em;
+}
+
+.myDelivery span font {
+	margin-left: 0.5em;
+}
+
+.myDelivery span {
+	margin: 0.5em 3em 0.5em 0;
+	float: left;
+}
+
+.myWay {
+	float: left;
+	width: 100%;
+	padding: 1em 0;
+}
+
+.mytable {
+	padding-bottom: 1em;
+	float: left;
+}
+
+.pl1em {
+	padding-left: 1em;
+}

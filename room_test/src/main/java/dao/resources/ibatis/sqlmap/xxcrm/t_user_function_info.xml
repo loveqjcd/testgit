@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="t_user_function_info">
+    <typeAlias alias="UserFunctionInfo" type="main.java.dao.model.user.UserFunctionInfoDo" />
+    <resultMap id="UserFunctionInfoResult" class="UserFunctionInfo">
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="function_name" property="functionName" jdbcType="VARCHAR" />
+        <result column="function_url" property="functionUrl" jdbcType="VARCHAR" />
+        <result column="function_level" property="functionLevel" jdbcType="INTEGER" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+        <result column="icon_src" property="iconSrc" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="leaf" property="leaf" jdbcType="VARCHAR" />
+        <result column="order_index" property="orderIndex" jdbcType="NUMBER" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+        <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+        <result column="gmt_modified" property="gmtModified" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="listUserFunctionInfo" resultMap="UserFunctionInfoResult" parameterClass="java.util.HashMap">
+    	select * from t_user_function_info 
+    	where 1 = 1
+    	<dynamic prepend="">
+    		<isNotEmpty prepend=" and " property="status">status = #status:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="ids">id in ($ids$)</isNotEmpty>
+    	</dynamic>
+    	order by order_index
+    </select>
+
+</sqlMap>

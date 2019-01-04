@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
+<sqlMap namespace="t_user_role">
+    <typeAlias alias="UserRole" type="main.java.dao.model.user.UserRoleDo" />
+    <resultMap id="UserRoleResult" class="UserRole">
+        <result column="id" property="id" jdbcType="BIGINT" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="keywords" property="keywords" jdbcType="VARCHAR" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="create_user_id" property="createUserId" jdbcType="BIGINT" />
+        <result column="memo" property="memo" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="createTime" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="updateTime" property="updateTime" jdbcType="TIMESTAMP" />
+    </resultMap>
+
+    <select id="loadUserRoleById" resultMap="UserRoleResult" parameterClass="java.lang.Long">
+        select * from t_user_role
+        where id = #roleId:LONG#
+    </select>
+
+    <insert id="createUserRole" parameterClass="UserRole">
+        insert into t_user_role (id, name, keywords, type, create_user_id, memo, status, createTime, updateTime) 
+        values (#id:BIGINT#, #name:VARCHAR#, #keywords:VARCHAR#, #type:INTEGER#, #createUserId:BIGINT#, #memo:VARCHAR#, #status:INTEGER#, now(), now())
+        <selectKey keyProperty="id" type="post" resultClass="long">
+            select LAST_INSERT_ID() as id
+        </selectKey>
+    </insert>
+
+    <update id="updateUserRoleById" parameterClass="UserRole">
+        update t_user_role set updateTime = now()
+        <isNotNull prepend="," property="name">
+            name = #name:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="keywords">
+            keywords = #keywords:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="type">
+            type = #type:INTEGER#
+        </isNotNull>
+        <isNotNull prepend="," property="createUserId">
+            create_user_id = #createUserId:BIGINT#
+        </isNotNull>
+        <isNotNull prepend="," property="memo">
+            memo = #memo:VARCHAR#
+        </isNotNull>
+        <isNotNull prepend="," property="status">
+            status = #status:INTEGER#
+        </isNotNull>
+        where id = #id:BIGINT#
+    </update>
+    
+    <select id="listUserRole" parameterClass="UserRole" resultMap="UserRoleResult">
+    	select * from t_user_role 
+    	where 1 = 1
+    	<dynamic prepend="">
+    		<isNotEmpty prepend=" and " property="status">status = #status:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="type">type = #type:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="types">type in ($types$)</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="createUserId">create_user_id = #createUserId:LONG#</isNotEmpty>
+    	</dynamic>
+    </select>
+    
+    <select id="listUserRoleByPage_count" parameterClass="java.util.HashMap" resultClass="java.lang.Integer">
+    	select count(*) from t_user_role
+    	where 1 = 1
+    	<dynamic prepend="">
+    		<isNotEmpty prepend=" and " property="id">id = #id:LONG#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="status">status = #status:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="type">type = #type:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="types">type in ($types$)</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="createUserId">create_user_id = #createUserId:LONG#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="name">name like concat('%','$name$','%')</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="memo">memo like concat('%','$memo$','%')</isNotEmpty>
+    	</dynamic>
+    </select>
+    
+    <select id="listUserRoleByPage" parameterClass="java.util.HashMap" resultMap="UserRoleResult">
+    	select * from t_user_role
+    	where 1 = 1
+    	<dynamic prepend="">
+    		<isNotEmpty prepend=" and " property="id">id = #id:LONG#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="status">status = #status:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="type">type = #type:INTEGER#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="types">type in ($types$)</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="createUserId">create_user_id = #createUserId:LONG#</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="name">name like concat('%','$name$','%')</isNotEmpty>
+    		<isNotEmpty prepend=" and " property="memo">memo like concat('%','$memo$','%')</isNotEmpty>
+    	</dynamic>
+    	order by type
+    	limit #startIndex:INTEGER#, #pageSize:INTEGER#
+    </select>
+
+</sqlMap>

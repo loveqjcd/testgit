@@ -1,0 +1,234 @@
+ul,ol {
+	list-style: none;
+}
+
+ul,menu,dir {
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+
+#listBox li {
+	clear: both;
+	border: solid 1px #ddd;
+	zoom: 1;
+	margin-bottom: 10px;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+#listBox li:after {
+	content: "\0020";
+	display: block;
+	height: 0;
+	clear: both;
+}
+
+#listBox .title {
+	height: 34px;
+	background-color: #f7f7f7;
+}
+
+#listBox li {
+	zoom: 1;
+}
+
+#listBox .title .top {
+	border-bottom: 1px solid #DDD;
+}
+
+#listBox .title div {
+	padding: 0 0 0 5px;
+}
+
+#listBox .title .right {
+	padding-right: 6px;
+	padding-top: 8px;
+	float: right;
+	overflow: hidden;
+}
+
+#listBox .title .right .bannerOrderDetail {
+	padding-left: 2px;
+	border-right: 0;
+}
+
+#orderList a {
+	color: #369;
+	text-decoration: none;
+}
+
+#listBox .title .left {
+	height: 32px;
+	overflow: hidden;
+}
+
+#listBox .title .left .single-select {
+	margin-top: 8px;
+}
+
+#listBox .title .left input,#listBox .title .left span {
+	float: left;
+	line-height: 18px;
+	margin-top: 6px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#listBox .title .left .title-order {
+	color: #666;
+	padding-right: 6px;
+	padding-left: 6px;
+	padding-left: 0\9\0;
+	height: 18px;
+	line-height: 16px;
+	_line-height: 20px;
+	display: inline-block;
+	border-right: 1px solid #ddd;
+	vertical-align: top;
+}
+
+#listBox .title .left input,#listBox .title .left span {
+	float: left;
+	line-height: 18px;
+	margin-top: 6px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#listBox .title .left .date {
+	padding-left: 6px;
+	padding-right: 4px;
+	border-right: 0;
+	color: #666;
+}
+
+#listBox .title .left input,#listBox .title .left span {
+	float: left;
+	line-height: 18px;
+	margin-top: 6px;
+	padding-left: 4px;
+	padding-right: 4px;
+}
+
+#listBox .orderInfo {
+	width: 100%;
+	height: 78px;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table {
+	display: table;
+	border-color: gray;
+}
+
+tbody {
+	display: table-row-group;
+	vertical-align: middle;
+	border-color: inherit;
+}
+
+Inherited from table.orderInfo
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+#listBox td.detail {
+	width: 420px;
+	border-right: 1px solid #ddd;
+}
+
+#listBox td {
+	vertical-align: top;
+	overflow: hidden;
+}
+
+body,h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl,dt,dd,ul,ol,li,pre,fieldset,lengend,button,input,textarea,form,th,td
+	{
+	margin: 0;
+	padding: 0;
+}
+
+#listBox td.s6 {
+	padding-top: 26px;
+	width: 110px;
+	border-right: 1px solid #e9e9e9;
+}
+
+#listBox .s1,#listBox .s2,#listBox .s3,#listBox .s4,#listBox .s5,#listBox .s6,#listBox .s7,#listBox .s8,#listBox .s9,#listBox .s10
+	{
+	padding-bottom: 5px;
+	text-align: right;
+	padding-right: 8px;
+}
+
+#listBox td {
+	vertical-align: top;
+	overflow: hidden;
+}
+
+#listBox .s1,#listBox .s2,#listBox .s3,#listBox .s4,#listBox .s5,#listBox .s6,#listBox .s7,#listBox .s8,#listBox .s9,#listBox .s10
+	{
+	text-align: right;
+}
+
+#listBox td.s7 {
+	padding-top: 26px;
+	width: 108px;
+	border-right: 1px solid #e9e9e9;
+	text-align: center;
+	padding-right: 0;
+}
+
+#listBox .s1,#listBox .s2,#listBox .s3,#listBox .s4,#listBox .s5,#listBox .s6,#listBox .s7,#listBox .s8,#listBox .s9,#listBox .s10
+	{
+	padding-bottom: 5px;
+	text-align: right;
+	padding-right: 8px;
+}
+
+#listBox td {
+	vertical-align: top;
+	overflow: hidden;
+}
+
+#listBox td.s7 div {
+	width: 100%;
+}
+
+#orderList .green {
+	color: #060;
+}
+
+#listBox td.ss {
+	border-right: 1px solid #e9e9e9;
+	padding-left: 5px;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#listBox td.sp {
+	padding-top: 5px;
+	border-right: 1px solid #e9e9e9;
+	padding-left: 5px;
+}
+
+#listBox td img {
+	width: 58px;
+	height: 58px;
+	border: 1px solid #CCC;
+	padding: 1px;
+	cursor: pointer;
+}

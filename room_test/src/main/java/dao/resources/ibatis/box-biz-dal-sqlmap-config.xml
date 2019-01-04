@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE sqlMapConfig
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+    <settings cacheModelsEnabled="true" enhancementEnabled="true" lazyLoadingEnabled="false" maxRequests="3000"
+                  maxSessions="3000" maxTransactions="3000" useStatementNamespaces="true" />
+  
+    <typeHandler jdbcType="CHAR" javaType="Boolean" callback="main.java.dao.dao.support.BooleanHandlerCallback" />
+    <typeHandler jdbcType="DECIMAL" javaType="java.math.BigDecimal"
+                     callback="main.java.dao.dao.support.BigDecimalToZeroHandlerCallback" />
+
+    <sqlMap resource="main/java/dao/resources/ibatis/sqlmap/placeholder.xml" />
+</sqlMapConfig>
